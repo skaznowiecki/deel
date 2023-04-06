@@ -60,7 +60,6 @@ describe("/balances/deposit/:userId", () => {
   it("should return 404 if client does not exist", async () => {
     const { statusCode, body } = await request(app)
       .post("/balances/deposit/1000")
-      .set("profile_id", "1")
       .send({ amount: 100 });
 
     expect(statusCode).toEqual(404);
@@ -72,7 +71,6 @@ describe("/balances/deposit/:userId", () => {
   it("should return 422 if the user id is not a client", async () => {
     const { statusCode, body } = await request(app)
       .post("/balances/deposit/2")
-      .set("profile_id", "1")
       .send({ amount: 100 });
 
     expect(statusCode).toEqual(422);
@@ -84,7 +82,6 @@ describe("/balances/deposit/:userId", () => {
   it("should return 422 if deposit exceeds the limit of 0.25 of unpaid jobs total", async () => {
     const { statusCode, body } = await request(app)
       .post("/balances/deposit/1")
-      .set("profile_id", "1")
       .send({ amount: 1000 });
 
     expect(statusCode).toEqual(422);
@@ -96,7 +93,6 @@ describe("/balances/deposit/:userId", () => {
   it("should return the client with the new balance", async () => {
     const { statusCode, body } = await request(app)
       .post("/balances/deposit/1")
-      .set("profile_id", "1")
       .send({ amount: 100 });
 
     expect(statusCode).toEqual(200);

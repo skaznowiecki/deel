@@ -3,8 +3,6 @@ const bodyParser = require("body-parser");
 
 const { sequelize } = require("./model");
 
-const { getProfile } = require("./middleware/getProfile");
-
 const router = require("./controllers/router");
 
 const app = express();
@@ -12,8 +10,6 @@ const app = express();
 app.use(bodyParser.json());
 app.set("sequelize", sequelize);
 app.set("models", sequelize.models);
-
-app.use(getProfile);
 
 app.use(router);
 
