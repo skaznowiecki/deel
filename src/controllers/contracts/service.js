@@ -1,4 +1,4 @@
-const { ContractRepository } = require("./repository");
+const { ContractRepository } = require("./repositories/contractRepository");
 
 class ContractService {
   constructor() {

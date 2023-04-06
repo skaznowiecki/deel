@@ -1,4 +1,4 @@
-const { Contract } = require("../../model");
+const { Contract } = require("../../../model");
 const { Op } = require("sequelize");
 
 class ContractRepository {
