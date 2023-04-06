@@ -29,6 +29,6 @@ Due to the limited time that the project had (between 3 and 4 hours) there are s
 
 ### Considerations of testing
 
-- We are using `jest` to run the tests.
-- We are using `supertest` to test the API endpoints.
-- We are using `sqlite3` in `memory` as the database for testing.
+- I used `jest` to run the tests.
+- I used `supertest` to test the API endpoints.
+- I used `sqlite3` in `memory` as the database for testing.
