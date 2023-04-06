@@ -1,0 +1,68 @@
+openapi: 3.0.0
+info:
+  title: Contract API
+  version: v1
+servers:
+  - url: http://localhost
+components:
+  schemas:
+    Contract:
+      type: object
+      properties:
+        id:
+          type: integer
+        terms:
+          type: string
+        status:
+          type: string
+        ClientId:
+          type: integer
+        ContractorId:
+          type: integer
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+paths:
+  "/contracts/{id}":
+    get:
+      summary: Get contract by id
+      parameters:
+        - in: header
+          name: profile_id
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: A contract object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Contract"
+        404:
+          $ref: "#/components/responses/404"
+
+  "/contracts":
+    get:
+      summary: Get user contracts that are not terminated
+      parameters:
+        - in: header
+          name: profile_id
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: List of contracts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Contract"

@@ -1,0 +1,75 @@
+openapi: 3.0.0
+info:
+  title: Jobs API
+  version: v1
+servers:
+  - url: http://localhost
+components:
+  schemas:
+    Job:
+      type: object
+      properties:
+        id:
+          type: integer
+        description:
+          type: string
+        price:
+          type: integer
+        ContractorId:
+          type: integer
+        ClientId:
+          type: integer
+        paid:
+          type: boolean
+        paymentDate:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+
+paths:
+  "/jobs/{jobId}/pay":
+    post:
+      summary: Jobs pay by id
+      parameters:
+        - in: header
+          name: profile_id
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: jobId
+          required: true
+          schema:
+            type: integer
+
+      responses:
+        200:
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Job"
+        422:
+          $ref: "#/components/responses/422"
+        404:
+          $ref: "#/components/responses/422"
+  "/jobs/unpaid":
+    get:
+      summary: Get unpaid jobs for active contracts
+      parameters:
+        - in: header
+          name: profile_id
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: List of contracts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Job"

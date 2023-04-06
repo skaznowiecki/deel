@@ -1,0 +1,76 @@
+openapi: 3.0.0
+info:
+  title: Admin API
+  version: v1
+servers:
+  - url: http://localhost
+components:
+  schemas:
+    BestClient:
+      type: object
+      properties:
+        id:
+          type: integer
+        fullName:
+          type: string
+        paid:
+          type: integer
+
+paths:
+  "/admin/best-profession":
+    get:
+      summary: Get the best profession
+      parameters:
+        - in: query
+          name: start
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: end
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Result of the best profession between start and end dates
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  profession:
+                    type: string
+                  total:
+                    type: string
+        422:
+          $ref: "#/components/responses/422"
+
+  "/admin/best-clients":
+    get:
+      summary: Get the best clients
+      parameters:
+        - in: query
+          name: start
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: end
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: limit
+          required: false
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: List of contracts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BestClient"

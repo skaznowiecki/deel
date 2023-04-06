@@ -1,0 +1,53 @@
+openapi: 3.0.0
+info:
+  title: Balance API
+  version: v1
+servers:
+  - url: http://localhost
+components:
+  schemas:
+    Client:
+      type: object
+      properties:
+        id:
+          type: integer
+        firstName:
+          type: string
+        lastName:
+          type: string
+        profession:
+          type: string
+        type:
+          type: string
+        balance:
+          type: integer
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+
+paths:
+  "/balances/deposit/{userId}":
+    post:
+      summary: Deposit client balance
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+        - in: body
+          name: amount
+          required: true
+          schema:
+            type: integer
+
+      responses:
+        200:
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Client"
+        422:
+          $ref: "#/components/responses/422"

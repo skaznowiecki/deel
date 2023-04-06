@@ -1,0 +1,35 @@
+openapi: 3.0.0
+info:
+  title: Contract API
+  version: v1
+servers:
+  - url: http://localhost
+components:
+  responses:
+    404:
+      description: Entity not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+    401:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+    422:
+      description: Validation error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
